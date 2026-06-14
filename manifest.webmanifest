@@ -1,0 +1,25 @@
+{
+  "name": "SEHAT — Sistem Ekosistem Health, Analytics & Telemedicine",
+  "short_name": "SEHAT",
+  "description": "Employee Health Intelligence Platform untuk KPU Indonesia. AI symptom checker, telemedicine, fitness, kesehatan mental, dan analitik kesehatan organisasi.",
+  "id": "/sehat/",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1220",
+  "theme_color": "#0e9f6e",
+  "lang": "id-ID",
+  "dir": "ltr",
+  "categories": ["health", "medical", "productivity", "lifestyle"],
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "AI Symptom Checker", "short_name": "Cek Gejala", "url": "./index.html#/symptom", "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Check-in Harian", "short_name": "Check-in", "url": "./index.html#/checkin", "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Fitness Tracker", "short_name": "Fitness", "url": "./index.html#/fitness", "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

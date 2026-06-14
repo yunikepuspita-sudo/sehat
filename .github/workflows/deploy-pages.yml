@@ -1,0 +1,43 @@
+# Deploy the SEHAT static PWA to GitHub Pages — $0 hosting, no build step.
+# Use this when `sehat/` is the ROOT of its own repository.
+# Then enable: Settings → Pages → Source: "GitHub Actions".
+name: Deploy SEHAT to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Regenerate icons so the build is reproducible (no committed binaries needed).
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Generate PWA icons
+        run: node scripts/generate-icons.mjs
+
+      - name: Sanity check (syntax)
+        run: for f in js/*.js sw.js; do node --check "$f"; done
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .            # the repo root IS the site
+      - id: deployment
+        uses: actions/deploy-pages@v4
